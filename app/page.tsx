@@ -1,5 +1,5 @@
-import { MainMenu } from "@/components/game-menu/main-menu";
+import { GameApp } from "@/components/game-app";
 
 export default function Page() {
-  return <MainMenu />;
+  return <GameApp />;
 }

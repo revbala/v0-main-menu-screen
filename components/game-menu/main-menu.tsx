@@ -48,7 +48,11 @@ const MENU_ITEMS = [
   },
 ];
 
-export function MainMenu() {
+interface MainMenuProps {
+  onNewGame?: () => void;
+}
+
+export function MainMenu({ onNewGame }: MainMenuProps) {
   const { playHoverSound, playSelectSound, playWhistleSound } = useMenuAudio();
   const { muted, toggle: toggleMute } = useAudioMute();
   const [whistlePlayed, setWhistlePlayed] = useState(false);
@@ -105,7 +109,10 @@ export function MainMenu() {
                 index={i}
                 variant={item.variant}
                 spinIcon={item.spinIcon}
-                onClick={handleSelect}
+                onClick={() => {
+                  handleSelect();
+                  if (item.label === "NEW GAME" && onNewGame) onNewGame();
+                }}
               />
             </div>
           ))}
