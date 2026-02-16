@@ -322,3 +322,58 @@
   0%, 100% { transform: rotate(0deg); }
   50% { transform: rotate(6deg); }
 }
+
+/* Dialog box slide-up */
+@keyframes dialog-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* NPC idle bounce */
+@keyframes npc-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* Quest notification pop */
+@keyframes quest-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Furnace glow pulse */
+@keyframes furnace-glow {
+  0%, 100% { opacity: 0.6; filter: brightness(1); }
+  50% { opacity: 0.9; filter: brightness(1.3); }
+}
+
+/* Conveyor belt move */
+@keyframes conveyor-move {
+  from { background-position: 0 0; }
+  to { background-position: 20px 0; }
+}
+
+/* Gear turn */
+@keyframes gear-turn {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Exclamation bounce for quest giver */
+@keyframes exclaim-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.15); }
+}
+
+/* Typewriter text reveal */
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Store sign sway */
+@keyframes sign-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}

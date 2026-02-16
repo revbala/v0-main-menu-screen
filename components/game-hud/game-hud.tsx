@@ -15,9 +15,10 @@ import { FlickerLamp } from "../game-menu/flicker-lamp";
 interface GameHUDProps {
   onBack?: () => void;
   onOpenMap?: () => void;
+  onGoFactory?: () => void;
 }
 
-export function GameHUD({ onBack, onOpenMap }: GameHUDProps) {
+export function GameHUD({ onBack, onOpenMap, onGoFactory }: GameHUDProps) {
   const [health, setHealth] = useState(72);
   const [tickets, setTickets] = useState(3);
   const [showQuests, setShowQuests] = useState(true);
@@ -97,6 +98,9 @@ export function GameHUD({ onBack, onOpenMap }: GameHUDProps) {
             </RivetedButton>
             <RivetedButton onClick={onOpenMap}>
               {"OPEN MAP"}
+            </RivetedButton>
+            <RivetedButton onClick={onGoFactory}>
+              {"FACTORY"}
             </RivetedButton>
           </div>
         </div>

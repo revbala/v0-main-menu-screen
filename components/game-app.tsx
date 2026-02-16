@@ -4,8 +4,9 @@ import { useState, useCallback } from "react";
 import { MainMenu } from "./game-menu/main-menu";
 import { GameHUD } from "./game-hud/game-hud";
 import { CityMap } from "./city-map/city-map";
+import { FactoryDistrict } from "./factory-district/factory-district";
 
-type Screen = "menu" | "game" | "map";
+type Screen = "menu" | "game" | "map" | "factory";
 
 export function GameApp() {
   const [screen, setScreen] = useState<Screen>("menu");
@@ -41,16 +42,23 @@ export function GameApp() {
         <GameHUD
           onBack={() => navigate("menu")}
           onOpenMap={() => navigate("map")}
+          onGoFactory={() => navigate("factory")}
         />
       )}
       {screen === "map" && (
         <CityMap
           onBack={() => navigate("game")}
           onDistrictSelect={(district) => {
-            // For now, clicking a district takes you back to the HUD
-            navigate("game");
+            if (district === "factory") {
+              navigate("factory");
+            } else {
+              navigate("game");
+            }
           }}
         />
+      )}
+      {screen === "factory" && (
+        <FactoryDistrict onBack={() => navigate("map")} />
       )}
     </div>
   );
