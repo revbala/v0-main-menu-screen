@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 
 interface SteamParticle {
   id: number;
@@ -12,16 +12,22 @@ interface SteamParticle {
 }
 
 export function SteamParticles({ count = 12 }: { count?: number }) {
-  const particles = useMemo<SteamParticle[]>(() => {
-    return Array.from({ length: count }, (_, i) => ({
-      id: i,
-      left: `${10 + Math.random() * 80}%`,
-      delay: `${Math.random() * 3}s`,
-      duration: `${2 + Math.random() * 2}s`,
-      size: `${3 + Math.random() * 5}px`,
-      alt: Math.random() > 0.5,
-    }));
+  const [particles, setParticles] = useState<SteamParticle[]>([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        left: `${10 + Math.random() * 80}%`,
+        delay: `${Math.random() * 3}s`,
+        duration: `${2 + Math.random() * 2}s`,
+        size: `${3 + Math.random() * 5}px`,
+        alt: Math.random() > 0.5,
+      }))
+    );
   }, [count]);
+
+  if (particles.length === 0) return null;
 
   return (
     <div

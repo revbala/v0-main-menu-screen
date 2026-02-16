@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 
 interface SmokeParticle {
   id: number;
@@ -32,16 +32,22 @@ export function SmokeStacks() {
 }
 
 function SmokeColumn({ x, count }: { x: string; count: number }) {
-  const particles = useMemo<SmokeParticle[]>(() => {
-    return Array.from({ length: count }, (_, i) => ({
-      id: i,
-      left: `${-8 + Math.random() * 16}px`,
-      delay: `${Math.random() * 4}s`,
-      duration: `${4 + Math.random() * 3}s`,
-      size: 8 + Math.random() * 14,
-      slow: Math.random() > 0.5,
-    }));
+  const [particles, setParticles] = useState<SmokeParticle[]>([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: count }, (_, i) => ({
+        id: i,
+        left: `${-8 + Math.random() * 16}px`,
+        delay: `${Math.random() * 4}s`,
+        duration: `${4 + Math.random() * 3}s`,
+        size: 8 + Math.random() * 14,
+        slow: Math.random() > 0.5,
+      }))
+    );
   }, [count]);
+
+  if (particles.length === 0) return null;
 
   return (
     <div
